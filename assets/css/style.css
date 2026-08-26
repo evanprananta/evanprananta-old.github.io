@@ -34,19 +34,16 @@ a {
 /* Grid Layout */
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 columns desktop[cite: 1] */
+  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
   padding: 2rem;
+  max-width: 1024px; /* Limits the maximum width */
+  margin: 0 auto; /* Centers the grid on the page */
 }
 
 @media (max-width: 768px) {
   .card-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    padding: 2rem;
-    max-width: 1024px; /* Limits the maximum width */
-    margin: 0 auto; /* Centers the grid on the page */
+    grid-template-columns: repeat(2, 1fr); /* 2 columns mobile[cite: 1] */
   }
 }
 
