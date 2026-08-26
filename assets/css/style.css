@@ -12,10 +12,10 @@ body {
   padding: 0;
 }
 
-a {
+/*a {
   color: var(--text-color);
   text-decoration: none;
-}
+}*/
 
 /* Nav Bar */
 .site-nav {
@@ -62,11 +62,15 @@ a {
 .card-title {
   font-weight: 700; /* Montserrat bold[cite: 1] */
   margin-top: 0;
+  color: var(--text-color);
+  text-decoration: none;
 }
 
 .card-excerpt {
   overflow: hidden;
   text-overflow: ellipsis; /* Truncation[cite: 1] */
+  color: var(--text-color);
+  text-decoration: none;
 }
 
 .card-link {
@@ -109,7 +113,7 @@ a {
 
 /* Post Detail Max Width */
 .post-detail {
-  max-width: 800px; /* Generous desktop margins[cite: 1] */
+  max-width: 1024px; /* Generous desktop margins[cite: 1] */
   margin: 0 auto;
   padding: 2rem;
 }
@@ -119,4 +123,40 @@ a {
 }
 .post-tags {
   margin-bottom: 1rem; /* Adds vertical space below the tags */
+}
+
+.tag-filter-bar {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 1rem 2rem 0 2rem; /* Aligns with grid padding */
+  display: flex;
+  align-items: center;
+  min-height: 2.5rem; /* Prevents layout shift when empty */
+}
+
+/* Filter Chip (Pill badge above the grid) */
+.filter-chip {
+  display: inline-flex;
+  align-items: center;
+  background-color: #e5e5e5;
+  color: var(--text-color);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.85rem;
+  font-style: italic;
+  padding: 0.35rem 0.85rem;
+  border-radius: 20px;
+}
+
+/* Close Button (✕) Inside Chip */
+.filter-chip .close-chip {
+  margin-left: 0.5rem;
+  cursor: pointer;
+  font-style: normal;
+  font-weight: bold;
+  opacity: 0.6;
+  transition: opacity 0.15s ease;
+}
+
+.filter-chip .close-chip:hover {
+  opacity: 1;
 }
