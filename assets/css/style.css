@@ -93,6 +93,10 @@ a:visited {
   cursor: pointer;
 }
 
+.tag:visited {
+  color: var(--accent-color); /* Prevents the clicked tag from turning blue/purple */
+}
+
 /* Pin Tags to Bottom */
 .card-tags {
   position: absolute;
