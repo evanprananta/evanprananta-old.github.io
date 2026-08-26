@@ -1,0 +1,20 @@
+---
+layout: default
+---
+<article class="post-detail">
+  <h1 class="post-title">{{ page.title }}</h1>
+  
+  <div class="post-meta">
+    <div class="post-tags">
+      {% for tag in page.tags %}
+        <!-- Links to home with tag parameter for filtering -->
+        <a href="/?tag={{ tag }}" class="tag">{{ tag }}</a> 
+      {% endfor %}
+    </div>
+    <time class="post-date">{{ page.date | date: "%B %Y" }}</time>
+  </div>
+
+  <div class="post-content">
+    {{ content }}
+  </div>
+</article>

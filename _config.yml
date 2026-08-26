@@ -1,0 +1,12 @@
+title: Evan Prananta
+description: >- # this means to ignore newlines until "baseurl:"
+  Personal Site of Evan Prananta
+baseurl: ""
+url: "https://evanprananta.github.io"
+permalink: /posts/:slug # Routes posts to /posts/:slug
+
+# Exclude unnecessary files
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md

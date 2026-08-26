@@ -1,0 +1,101 @@
+:root {
+  --accent-color: #D9622B; /*[cite: 1] */
+  --text-color: #222222; /*[cite: 1] */
+  --bg-color: #ffffff;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif; /*[cite: 1] */
+  color: var(--text-color); /*[cite: 1] */
+  background-color: var(--bg-color); /*[cite: 1] */
+  margin: 0;
+  padding: 0;
+}
+
+/* Nav Bar */
+.site-nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem;
+}
+.site-nav a {
+  color: var(--text-color); /*[cite: 1] */
+  text-decoration: none;
+}
+.site-nav a:hover {
+  text-decoration: underline; /*[cite: 1] */
+}
+
+/* Grid Layout */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns desktop[cite: 1] */
+  gap: 2rem;
+  padding: 2rem;
+}
+
+@media (max-width: 768px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns mobile[cite: 1] */
+  }
+}
+
+/* The Fixed 1:1 Card Component */
+.card {
+  aspect-ratio: 1 / 1; /* Fixed 1:1 square[cite: 1] */
+  border: 1px solid black; /* Black border[cite: 1] */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.card-title {
+  font-weight: 700; /* Montserrat bold[cite: 1] */
+  margin-top: 0;
+}
+
+.card-excerpt {
+  overflow: hidden;
+  text-overflow: ellipsis; /* Truncation[cite: 1] */
+}
+
+/* Tags Formatting */
+.tag {
+  color: var(--accent-color); /* hex D9622B[cite: 1] */
+  font-style: italic; /*[cite: 1] */
+  text-decoration: underline; /*[cite: 1] */
+  margin-right: 0.5rem;
+}
+
+/* Pin Tags to Bottom */
+.card-tags {
+  position: absolute;
+  bottom: 1.5rem; /*[cite: 1] */
+  left: 1.5rem;
+}
+
+/* Image Card Overrides */
+.card-image-wrapper {
+  position: absolute;
+  top: 4rem; /* Below title */
+  left: 0; right: 0; bottom: 3rem; /* Above tags */
+}
+.card-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Cropped/cover-fit[cite: 1] */
+}
+
+/* Post Detail Max Width */
+.post-detail {
+  max-width: 800px; /* Generous desktop margins[cite: 1] */
+  margin: 0 auto;
+  padding: 2rem;
+}
+.post-content img {
+  max-width: 100%;
+  height: auto; /* Inline natural width[cite: 1] */
+}
