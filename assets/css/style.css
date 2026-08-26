@@ -68,7 +68,7 @@ a:visited {
 .card-excerpt {
   flex-grow: 1; /* fills the space the removed title used to occupy */
   margin-top: 0; /* removes default <p> margin so it sits flush at the top */
-  
+
   overflow: hidden;
   text-overflow: ellipsis; /* Truncation[cite: 1] */
   color: var(--text-color);
@@ -90,6 +90,7 @@ a:visited {
   font-style: italic; /*[cite: 1] */
   text-decoration: underline; /*[cite: 1] */
   margin-right: 0.5rem;
+  cursor: pointer;
 }
 
 /* Pin Tags to Bottom */

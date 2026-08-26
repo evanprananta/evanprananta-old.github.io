@@ -45,18 +45,24 @@ layout: default
 <script>
 document.addEventListener("DOMContentLoaded", function() {
   // 1. Check the URL for a 'tag' parameter
-  const urlParams = new URLSearchParams(window.location.search);
-  const activeTag = urlParams.get('tag');
+  // const urlParams = new URLSearchParams(window.location.search);
+  // const activeTag = urlParams.get('tag');
 
   const filterBar = document.getElementById('tag-filter-bar');
   const cards = document.querySelectorAll('.card-link');
 
-  if (activeTag) {
+  //if (activeTag) {
     // 2. Build the removable chip if a tag is active
     // Following the spec: removable chip formatted as `tagname ✕`
+  function applyTagFilter(tag) {
+    // Clear any existing chip first (so re-filtering doesn't stack chips)
+    filterBar.innerHTML = '';
+
+    // Build the removable chip
     const chip = document.createElement('div');
     chip.className = 'filter-chip';
-    chip.innerHTML = `${activeTag} <span class="close-chip" style="cursor:pointer; margin-left:8px;">✕</span>`;
+    // chip.innerHTML = `${activeTag} <span class="close-chip" style="cursor:pointer; margin-left:8px;">✕</span>`;
+    chip.innerHTML = `${tag} <span class="close-chip" style="cursor:pointer; margin-left:8px;">✕</span>`;
     
     // Add chip styling dynamically or add this to your style.css
     chip.style.display = 'inline-block';
@@ -73,11 +79,12 @@ document.addEventListener("DOMContentLoaded", function() {
     cards.forEach(card => {
       // The dataset.tags grabs the data-tags="tag1,tag2" we added to the HTML
       const cardTags = card.dataset.tags ? card.dataset.tags.split(',') : [];
-      if (cardTags.includes(activeTag)) {
-        card.style.display = 'block';
-      } else {
-        card.style.display = 'none';
-      }
+      //if (cardTags.includes(activeTag)) {
+      //  card.style.display = 'block';
+      //} else {
+      //  card.style.display = 'none';
+      //}
+      card.style.display = cardTags.includes(tag) ? 'block' : 'none';
     });
 
     // 4. Handle clicking the '✕' to remove the filter
@@ -95,5 +102,26 @@ document.addEventListener("DOMContentLoaded", function() {
       window.history.pushState({ path: newUrl }, '', newUrl);
     });
   }
+
+  // 1. Check the URL for a 'tag' parameter on load
+  const urlParams = new URLSearchParams(window.location.search);
+  const activeTag = urlParams.get('tag');
+  if (activeTag) {
+    applyTagFilter(activeTag);
+  }
+
+  // 2. Make each tag on a card clickable without triggering the card's link
+  document.querySelectorAll('.card-tags .tag').forEach(tagEl => {
+    tagEl.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation(); // stop the click from bubbling up to the parent <a class="card-link">
+
+      const tag = this.dataset.tag;
+      const newUrl = `${window.location.protocol}//${window.location.host}${window.location.pathname}?tag=${encodeURIComponent(tag)}`;
+      window.history.pushState({ path: newUrl }, '', newUrl);
+
+      applyTagFilter(tag);
+    });
+  });
 });
 </script>
