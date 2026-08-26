@@ -12,6 +12,11 @@ body {
   padding: 0;
 }
 
+a {
+  color: var(--text-color);
+  text-decoration: none;
+}
+
 /* Nav Bar */
 .site-nav {
   display: flex;
@@ -36,7 +41,12 @@ body {
 
 @media (max-width: 768px) {
   .card-grid {
-    grid-template-columns: repeat(2, 1fr); /* 2 columns mobile[cite: 1] */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1024px; /* Limits the maximum width */
+    margin: 0 auto; /* Centers the grid on the page */
   }
 }
 
@@ -62,6 +72,15 @@ body {
   text-overflow: ellipsis; /* Truncation[cite: 1] */
 }
 
+.card-link {
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+.card-link:visited {
+  color: var(--text-color); /* Prevents the clicked link from turning blue/purple */
+}
+
 /* Tags Formatting */
 .tag {
   color: var(--accent-color); /* hex D9622B[cite: 1] */
@@ -79,14 +98,16 @@ body {
 
 /* Image Card Overrides */
 .card-image-wrapper {
-  position: absolute;
-  top: 4rem; /* Below title */
-  left: 0; right: 0; bottom: 3rem; /* Above tags */
+  flex-grow: 1; /* Takes up all available vertical space */
+  width: 100%;
+  margin-bottom: 2rem; /* Leaves room for the tags at the bottom */
+  overflow: hidden;
 }
+
 .card-image-wrapper img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Cropped/cover-fit[cite: 1] */
+  object-fit: cover;
 }
 
 /* Post Detail Max Width */
@@ -98,4 +119,7 @@ body {
 .post-content img {
   max-width: 100%;
   height: auto; /* Inline natural width[cite: 1] */
+}
+.post-tags {
+  margin-bottom: 1rem; /* Adds vertical space below the tags */
 }
