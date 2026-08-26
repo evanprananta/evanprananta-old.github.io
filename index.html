@@ -43,7 +43,57 @@ layout: default
 
 <!-- Simple JS for Tag Filtering as seen in Desktop - 2.jpg -->
 <script>
-  // Script checks URL parameters (e.g., ?tag=architecture)
-  // If present, it creates the chip (e.g., "architecture x") in #tag-filter-bar
-  // Then it loops through #post-grid .card-link items, hiding those that don't include the tag in data-tags
+document.addEventListener("DOMContentLoaded", function() {
+  // 1. Check the URL for a 'tag' parameter
+  const urlParams = new URLSearchParams(window.location.search);
+  const activeTag = urlParams.get('tag');
+
+  const filterBar = document.getElementById('tag-filter-bar');
+  const cards = document.querySelectorAll('.card-link');
+
+  if (activeTag) {
+    // 2. Build the removable chip if a tag is active
+    // Following the spec: removable chip formatted as `tagname ✕`
+    const chip = document.createElement('div');
+    chip.className = 'filter-chip';
+    chip.innerHTML = `${activeTag} <span class="close-chip" style="cursor:pointer; margin-left:8px;">✕</span>`;
+    
+    // Add chip styling dynamically or add this to your style.css
+    chip.style.display = 'inline-block';
+    chip.style.backgroundColor = '#e0e0e0';
+    chip.style.padding = '0.25rem 0.75rem';
+    chip.style.borderRadius = '16px';
+    chip.style.marginBottom = '1rem';
+    chip.style.fontSize = '0.875rem';
+    chip.style.fontStyle = 'italic';
+    
+    filterBar.appendChild(chip);
+
+    // 3. Filter the grid
+    cards.forEach(card => {
+      // The dataset.tags grabs the data-tags="tag1,tag2" we added to the HTML
+      const cardTags = card.dataset.tags ? card.dataset.tags.split(',') : [];
+      if (cardTags.includes(activeTag)) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    // 4. Handle clicking the '✕' to remove the filter
+    chip.querySelector('.close-chip').addEventListener('click', function() {
+      // Remove the chip
+      filterBar.innerHTML = '';
+      
+      // Show all cards again
+      cards.forEach(card => {
+        card.style.display = 'block';
+      });
+
+      // Remove the ?tag= parameter from the URL without reloading the page
+      const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+      window.history.pushState({ path: newUrl }, '', newUrl);
+    });
+  }
+});
 </script>
