@@ -58,14 +58,17 @@ a:visited {
   overflow: hidden;
 }
 
-.card-title {
-  font-weight: 700; /* Montserrat bold[cite: 1] */
+/*.card-title {
+  font-weight: 700;
   margin-top: 0;
   color: var(--text-color);
   text-decoration: none;
-}
+}*/
 
 .card-excerpt {
+  flex-grow: 1; /* fills the space the removed title used to occupy */
+  margin-top: 0; /* removes default <p> margin so it sits flush at the top */
+  
   overflow: hidden;
   text-overflow: ellipsis; /* Truncation[cite: 1] */
   color: var(--text-color);

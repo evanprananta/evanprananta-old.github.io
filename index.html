@@ -11,7 +11,7 @@ layout: default
         
         <!-- Image Card Variant -->
         {% if post.cover_image %}
-          <h2 class="card-title">{{ post.title }}</h2>
+          <!-- <h2 class="card-title">{{ post.title }}</h2> -->
           <div class="card-image-wrapper">
             <img src="{{ post.cover_image }}" alt="{{ post.title }}">
           </div>
@@ -21,9 +21,9 @@ layout: default
         
         <!-- Text/Quote Card Variant -->
         {% else %}
-          {% if post.title %}
+          <!-- {% if post.title %}
             <h2 class="card-title">{{ post.title }}</h2>
-          {% endif %}
+          {% endif %} -->
           <p class="card-excerpt">
             {% if post.quote %}
               {{ post.quote | truncatewords: 50 }}
